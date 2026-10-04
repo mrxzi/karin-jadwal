@@ -224,5 +224,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
 export function getIndonesianDayName(dateObj: Date = new Date()): DayOfWeek {
   const days: DayOfWeek[] = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
   const dayIndex = dateObj.getDay(); // 0 is Minggu, 1 is Senin...
+  // Jika hari Minggu atau Sabtu (Hari Libur), tampilkan jadwal hari Senin agar jadwal langsung terlihat
+  if (dayIndex === 0 || dayIndex === 6) return 'Senin';
   return days[dayIndex];
 }
