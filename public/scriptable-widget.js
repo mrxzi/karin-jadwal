@@ -46,13 +46,13 @@ async function createWidget() {
   headerStack.layoutHorizontally();
   headerStack.centerAlignContent();
 
-  const dayText = headerStack.addText(data.day.toUpperCase());
+  const dayText = headerStack.addText((data.day || "HARI INI").toUpperCase());
   dayText.textColor = new Color("#38bdf8"); // Sky Blue accent
   dayText.font = Font.boldSystemFont(13);
 
   headerStack.addSpacer();
 
-  const countBadge = headerStack.addText(`${data.totalClasses} Pelajaran`);
+  const countBadge = headerStack.addText(`${data.totalClasses || 0} Pelajaran`);
   countBadge.textColor = new Color("#94a3b8");
   countBadge.font = Font.mediumSystemFont(10);
 
@@ -68,7 +68,7 @@ async function createWidget() {
   // Jika Tidak Ada Jadwal (Hari Libur)
   if (data.schedule.length === 0) {
     const emptyStack = widget.addStack();
-    emptyStack.layoutVertical();
+    emptyStack.layoutVertically();
     
     const freeText = emptyStack.addText("🎉 Libur / Bebas!");
     freeText.textColor = new Color("#4ade80");
@@ -108,7 +108,7 @@ async function createWidget() {
 
     // Text Information
     const infoStack = itemStack.addStack();
-    infoStack.layoutVertical();
+    infoStack.layoutVertically();
 
     // Subject title + status badge
     const titleRow = infoStack.addStack();

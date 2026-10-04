@@ -9,7 +9,7 @@ export const SCRIPTABLE_CODE = `// =============================================
 // =============================================================================
 
 // GANTI URL INI DENGAN URL DEPLOY VERCEL / NETLIFY ANDA:
-const API_URL = "https://DOMAIN-ANDA.vercel.app/api/jadwal/today";
+const API_URL = "https://karin-jadwal.vercel.app/api/jadwal/today";
 
 async function createWidget() {
   const widget = new ListWidget();
@@ -68,7 +68,7 @@ async function createWidget() {
   // Jika Tidak Ada Jadwal (Hari Libur)
   if (!data.schedule || data.schedule.length === 0) {
     const emptyStack = widget.addStack();
-    emptyStack.layoutVertical();
+    emptyStack.layoutVertically();
     
     const freeText = emptyStack.addText("🎉 Libur / Bebas!");
     freeText.textColor = new Color("#4ade80");
@@ -108,7 +108,7 @@ async function createWidget() {
 
     // Text Information
     const infoStack = itemStack.addStack();
-    infoStack.layoutVertical();
+    infoStack.layoutVertically();
 
     // Subject title + status badge
     const titleRow = infoStack.addStack();
