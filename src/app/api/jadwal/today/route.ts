@@ -10,34 +10,51 @@ interface ClassInfo {
   status?: 'Sedang Berlangsung' | 'Akan Datang' | 'Selesai Hari Ini';
 }
 
+// WITA = Waktu Indonesia Tengah (UTC+8) — Lombok / Mataram
+const WITA_OFFSET_MS = 8 * 60 * 60 * 1000;
+
+function getWITADate(): Date {
+  const utcNow = new Date();
+  return new Date(utcNow.getTime() + WITA_OFFSET_MS);
+}
+
+function getWITATimeStr(witaDate: Date): string {
+  const h = String(witaDate.getUTCHours()).padStart(2, '0');
+  const m = String(witaDate.getUTCMinutes()).padStart(2, '0');
+  return `${h}:${m}`;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const dateNow = new Date();
+
+    // All date/time calculations in WITA (UTC+8, Asia/Makassar)
+    const witaDate = getWITADate();
 
     // Support parameter ?day=Senin to override today for testing
     const overrideDay = searchParams.get('day') as DayOfWeek | null;
-    const targetDay: DayOfWeek = overrideDay || getIndonesianDayName(dateNow);
+    const targetDay: DayOfWeek = overrideDay || getIndonesianDayName(witaDate);
 
-    // Format ISO date YYYY-MM-DD
-    const isoDate = dateNow.toISOString().split('T')[0];
+    // Format ISO date YYYY-MM-DD (in WITA)
+    const yyyy = witaDate.getUTCFullYear();
+    const mm = String(witaDate.getUTCMonth() + 1).padStart(2, '0');
+    const dd = String(witaDate.getUTCDate()).padStart(2, '0');
+    const isoDate = `${yyyy}-${mm}-${dd}`;
 
-    // Format Indonesian Date (e.g., "Minggu, 4 Oktober 2026")
-    const options: Intl.DateTimeFormatOptions = {
+    // Format Indonesian Date (in WITA)
+    const formattedDate = new Intl.DateTimeFormat('id-ID', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    };
-    const formattedDate = dateNow.toLocaleDateString('id-ID', options);
+      timeZone: 'Asia/Makassar',
+    }).format(new Date());
+
+    // Current time in HH:mm (WITA)
+    const nowTimeStr = getWITATimeStr(witaDate);
 
     // Get today's schedules sorted by start time
     const todayList = getAllSchedules(targetDay);
-
-    // Current time in HH:mm
-    const currentHourStr = String(dateNow.getHours()).padStart(2, '0');
-    const currentMinStr = String(dateNow.getMinutes()).padStart(2, '0');
-    const nowTimeStr = `${currentHourStr}:${currentMinStr}`;
 
     let currentClass: ClassInfo | null = null;
     let nextClass: ClassInfo | null = null;
@@ -79,7 +96,7 @@ export async function GET(request: NextRequest) {
         endTime: item.endTime,
         room: item.room,
         teacher: item.teacher,
-        color: item.color || 'indigo',
+        color: item.color || 'slate',
         notes: item.notes || '',
         status,
         isCurrent,
@@ -88,7 +105,7 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    // If no active class currently, set next class as current status indicator if available
+    // If no active class, show next class as reference
     if (!currentClass && nextClass) {
       currentClass = {
         ...(nextClass as ClassInfo),
@@ -101,6 +118,8 @@ export async function GET(request: NextRequest) {
         day: targetDay,
         date: isoDate,
         formattedDate,
+        currentTimeWITA: nowTimeStr,
+        timezone: 'WITA (UTC+8) — Lombok/Mataram',
         totalClasses: todayList.length,
         currentClass,
         nextClass,
@@ -110,7 +129,8 @@ export async function GET(request: NextRequest) {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, OPTIONS',
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+          // No cache — always fresh, realtime
+          'Cache-Control': 'no-store, must-revalidate',
         },
       }
     );

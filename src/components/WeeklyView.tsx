@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { ScheduleItem, DayOfWeek } from '@/types/schedule';
 import {
   Search,
-  Clock,
   MapPin,
   User,
   Pencil,
@@ -29,8 +28,6 @@ const DAYS: Array<DayOfWeek | 'Semua'> = [
   'Rabu',
   'Kamis',
   'Jumat',
-  'Sabtu',
-  'Minggu',
 ];
 
 export const WeeklyView: React.FC<WeeklyViewProps> = ({
@@ -56,7 +53,7 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
   });
 
   // Group schedules by day when viewing "Semua"
-  const daysList: DayOfWeek[] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+  const daysList: DayOfWeek[] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
   const getDayCount = (day: DayOfWeek) => {
     return schedules.filter((s) => s.day === day).length;
@@ -152,12 +149,7 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
                   className="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-all group border-l-4 border-l-zinc-700 dark:border-l-zinc-300"
                 >
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700">
-                      <Clock className="w-3.5 h-3.5 inline mr-1 text-zinc-400" />
-                      {item.startTime} - {item.endTime}
-                    </span>
-
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => onEdit(item)}
                         className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
@@ -237,12 +229,7 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
                         className="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-md transition-all group border-l-4 border-l-zinc-700 dark:border-l-zinc-300"
                       >
                         <div className="flex items-center justify-between gap-2 mb-3">
-                          <span className="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700">
-                            <Clock className="w-3.5 h-3.5 inline mr-1 text-zinc-400" />
-                            {item.startTime} - {item.endTime}
-                          </span>
-
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-2">
                             <button
                               onClick={() => onEdit(item)}
                               className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"

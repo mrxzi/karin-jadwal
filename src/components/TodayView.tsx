@@ -181,7 +181,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
                 Pelajaran Berikutnya
               </span>
               <h4 className="text-base font-bold text-white">
-                {nextClass.subject} ({nextClass.startTime} - {nextClass.endTime})
+                {nextClass.subject}
               </h4>
               <p className="text-xs text-zinc-400">
                 {nextClass.room} • {nextClass.teacher}
@@ -198,9 +198,6 @@ export const TodayView: React.FC<TodayViewProps> = ({
             <BookOpen className="w-5 h-5 text-zinc-700 dark:text-zinc-300" />
             Daftar Pelajaran Hari Ini
           </h3>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">
-            Jam: <span className="font-mono font-bold text-zinc-900 dark:text-zinc-100">{currentTimeStr}</span>
-          </span>
         </div>
 
         {todaySchedules.length === 0 ? (
@@ -218,12 +215,14 @@ export const TodayView: React.FC<TodayViewProps> = ({
                 ? 'Tidak ada sekolah maupun ekskul! Hari Sabtu & Minggu waktunya bersantai dan menikmati liburan.'
                 : 'Hari ini tidak ada kelas yang terjadwal. Anda bisa menikmati waktu luang atau menambahkan pelajaran baru.'}
             </p>
-            <button
-              onClick={onAddClick}
-              className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-bold text-xs sm:text-sm shadow transition"
-            >
-              + Tambah Pelajaran Baru
-            </button>
+            {currentDayName !== 'Sabtu' && currentDayName !== 'Minggu' && (
+              <button
+                onClick={onAddClick}
+                className="px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-bold text-xs sm:text-sm shadow transition"
+              >
+                + Tambah Pelajaran Baru
+              </button>
+            )}
           </div>
         ) : (
           <div className="relative border-l-2 border-zinc-200 dark:border-zinc-800 ml-3 sm:ml-4 pl-4 sm:pl-6 space-y-4">
@@ -255,16 +254,6 @@ export const TodayView: React.FC<TodayViewProps> = ({
                   >
                     <div className="flex items-center justify-between gap-3 mb-2.5">
                       <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                        <span
-                          className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold ${
-                            status === 'current'
-                              ? 'bg-white text-zinc-950'
-                              : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-300 dark:border-zinc-700'
-                          }`}
-                        >
-                          {item.startTime} - {item.endTime}
-                        </span>
-
                         {status === 'current' && (
                           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white uppercase tracking-wider">
                             <span className="w-2 h-2 rounded-full bg-white animate-ping" />

@@ -14,7 +14,6 @@ export default function HomePage() {
   const [schedules, setSchedules] = useState<ScheduleItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'today' | 'weekly' | 'widget'>('today');
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Time & Date State
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
@@ -28,22 +27,14 @@ export default function HomePage() {
 
   // Initialize Dark Mode & Clock on mount
   useEffect(() => {
-    // Check dark mode preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('jadwal_theme');
-    const shouldBeDark = savedTheme ? savedTheme === 'dark' : prefersDark;
-    setIsDarkMode(shouldBeDark);
-    if (shouldBeDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    // Always enforce dark mode for clean matte aesthetic
+    document.documentElement.classList.add('dark');
 
     if (typeof window !== 'undefined') {
       setOrigin(window.location.origin);
     }
 
-    // Live Clock Interval
+    // Live Clock Interval — update every 10s
     const timer = setInterval(() => {
       setCurrentDate(new Date());
     }, 10000);
@@ -92,29 +83,22 @@ export default function HomePage() {
     }
   }, [schedules]);
 
-  const toggleDarkMode = () => {
-    const nextDark = !isDarkMode;
-    setIsDarkMode(nextDark);
-    localStorage.setItem('jadwal_theme', nextDark ? 'dark' : 'light');
-    if (nextDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
+  // ── WITA (UTC+8, Lombok/Mataram) time calculations ──────────────────────
+  // Shift the raw Date by +8h so getUTC* methods return WITA values.
+  const witaDate = new Date(currentDate.getTime() + 8 * 60 * 60 * 1000);
 
-  // Time & Day formatters
-  const currentDayName = getIndonesianDayName(currentDate);
-  const currentHourStr = String(currentDate.getHours()).padStart(2, '0');
-  const currentMinStr = String(currentDate.getMinutes()).padStart(2, '0');
+  const currentDayName = getIndonesianDayName(witaDate);
+  const currentHourStr = String(witaDate.getUTCHours()).padStart(2, '0');
+  const currentMinStr  = String(witaDate.getUTCMinutes()).padStart(2, '0');
   const currentTimeStr = `${currentHourStr}:${currentMinStr}`;
 
-  const formattedDateStr = currentDate.toLocaleDateString('id-ID', {
+  const formattedDateStr = new Intl.DateTimeFormat('id-ID', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  });
+    timeZone: 'Asia/Makassar',
+  }).format(currentDate);
 
   // Modal actions
   const handleOpenAddModal = () => {
@@ -170,9 +154,9 @@ export default function HomePage() {
             day: itemData.day || 'Senin',
             startTime: itemData.startTime || '07:00',
             endTime: itemData.endTime || '08:30',
-            room: itemData.room || 'Ruangan Belum Diatur',
-            teacher: itemData.teacher || 'Guru Belum Diatur',
-            color: itemData.color || 'indigo',
+            room: itemData.room || 'Kelas XII C',
+            teacher: itemData.teacher || 'Guru Pelajaran',
+            color: 'slate',
             notes: itemData.notes || '',
           };
           setSchedules((prev) => [...prev, newItem]);
@@ -202,19 +186,17 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-200">
-      {/* Navbar */}
+      {/* Floating Rounded Navbar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
         onOpenAddModal={handleOpenAddModal}
         currentTimeStr={currentTimeStr}
         currentDayName={currentDayName}
       />
 
       {/* Main Content Body */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-24 space-y-4">
             <div className="w-10 h-10 border-4 border-zinc-900 dark:border-zinc-100 border-t-transparent rounded-full animate-spin" />
@@ -250,25 +232,17 @@ export default function HomePage() {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-200 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/80 mt-16 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© 2026 Jadwal Karin (XIIC) • Monochrome Edition & Widget iOS</p>
-          <div className="flex items-center gap-4 text-zinc-400">
-            <span>JSON API: <code className="text-zinc-900 dark:text-zinc-100 font-bold">/api/jadwal/today</code></span>
-            <span>•</span>
-            <span>Scriptable iOS Ready</span>
-          </div>
-        </div>
-      </footer>
-
       {/* Modals */}
       <ScheduleModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveSchedule}
         initialData={editingItem}
-        defaultDay={currentDayName as DayOfWeek}
+        defaultDay={
+          (currentDayName === 'Minggu' || currentDayName === 'Sabtu'
+            ? 'Senin'
+            : currentDayName) as DayOfWeek
+        }
       />
 
       <DeleteConfirmModal

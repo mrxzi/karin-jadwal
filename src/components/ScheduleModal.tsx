@@ -12,7 +12,7 @@ interface ScheduleModalProps {
   defaultDay?: DayOfWeek;
 }
 
-const DAYS: DayOfWeek[] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+const DAYS: DayOfWeek[] = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
 
 export const ScheduleModal: React.FC<ScheduleModalProps> = ({
   isOpen,
