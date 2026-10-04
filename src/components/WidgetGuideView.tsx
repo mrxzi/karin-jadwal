@@ -331,21 +331,19 @@ export const WidgetGuideView: React.FC<WidgetGuideViewProps> = ({ currentOrigin 
                 <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-xl">
                   <button
                     onClick={() => setPreviewSize('medium')}
-                    className={`px-2.5 py-1 text-xs rounded-lg font-bold transition ${
-                      previewSize === 'medium'
-                        ? 'bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-sm'
-                        : 'text-zinc-500'
-                    }`}
+                    className={`px-2.5 py-1 text-xs rounded-lg font-bold transition ${previewSize === 'medium'
+                      ? 'bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-sm'
+                      : 'text-zinc-500'
+                      }`}
                   >
                     Medium
                   </button>
                   <button
                     onClick={() => setPreviewSize('small')}
-                    className={`px-2.5 py-1 text-xs rounded-lg font-bold transition ${
-                      previewSize === 'small'
-                        ? 'bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-sm'
-                        : 'text-zinc-500'
-                    }`}
+                    className={`px-2.5 py-1 text-xs rounded-lg font-bold transition ${previewSize === 'small'
+                      ? 'bg-white dark:bg-zinc-900 text-zinc-950 dark:text-white shadow-sm'
+                      : 'text-zinc-500'
+                      }`}
                   >
                     Small
                   </button>
@@ -383,7 +381,7 @@ export const WidgetGuideView: React.FC<WidgetGuideViewProps> = ({ currentOrigin 
               {/* Weekend / no schedule */}
               {!liveLoading && !fetchError && displayItems.length === 0 && (
                 <div className="py-4">
-                  <p className="text-sm font-semibold text-zinc-200">Libur & Bersantai 🎉</p>
+                  <p className="text-sm font-semibold text-zinc-200">Libur & Membuat Matcha! 🍵</p>
                   <p className="text-xs text-zinc-600 mt-1">Tidak ada jadwal pelajaran hari ini.</p>
                 </div>
               )}
@@ -397,13 +395,12 @@ export const WidgetGuideView: React.FC<WidgetGuideViewProps> = ({ currentOrigin 
                         {item.isCurrent ? '●' : '•'}
                       </span>
                       <span
-                        className={`text-xs font-medium truncate ${
-                          item.isCurrent
-                            ? 'font-bold text-white'
-                            : item.isPast
+                        className={`text-xs font-medium truncate ${item.isCurrent
+                          ? 'font-bold text-white'
+                          : item.isPast
                             ? 'text-zinc-600 line-through'
                             : 'text-zinc-300'
-                        }`}
+                          }`}
                       >
                         {item.subject}
                       </span>

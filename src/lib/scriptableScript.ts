@@ -71,7 +71,7 @@ async function createWidget() {
 
   // ── LIBUR ────────────────────────────────────────────────────
   if (schedule.length === 0) {
-    const free = widget.addText("🎉 Libur & Bersantai!");
+    const free = widget.addText("Libur & Membuat Matcha! 🍵");
     free.textColor = new Color("#e4e4e7");
     free.font      = Font.semiboldSystemFont(13);
     widget.addSpacer(4);

@@ -97,7 +97,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
             <p className="text-sm text-zinc-400 mt-1 max-w-xl">
               {todaySchedules.length > 0
                 ? `Anda memiliki ${todaySchedules.length} mata pelajaran yang dijadwalkan hari ini.`
-                : 'Tidak ada jadwal pelajaran untuk hari ini. Waktu bersantai! 🎉'}
+                : 'Tidak ada jadwal pelajaran untuk hari ini. Waktunya Membuat Matcha! 🍵'}
             </p>
           </div>
 
@@ -207,7 +207,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
             </div>
             <h4 className="text-xl font-black text-zinc-800 dark:text-zinc-100">
               {currentDayName === 'Sabtu' || currentDayName === 'Minggu'
-                ? `🎉 Hari ${currentDayName} Libur!`
+                ? `Hari ${currentDayName} Libur!`
                 : 'Tidak Ada Pelajaran Hari Ini'}
             </h4>
             <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-md mx-auto mt-1.5 mb-6">
@@ -233,24 +233,22 @@ export const TodayView: React.FC<TodayViewProps> = ({
                 <div key={item.id} className="relative group">
                   {/* Timeline Dot Indicator */}
                   <div
-                    className={`absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full border-2 transition-all ${
-                      status === 'current'
-                        ? 'border-white bg-zinc-900 dark:bg-white ring-4 ring-zinc-400/30 scale-125'
-                        : status === 'past'
+                    className={`absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full border-2 transition-all ${status === 'current'
+                      ? 'border-white bg-zinc-900 dark:bg-white ring-4 ring-zinc-400/30 scale-125'
+                      : status === 'past'
                         ? 'border-zinc-400 dark:border-zinc-700 bg-zinc-300 dark:bg-zinc-800'
                         : 'border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-900'
-                    }`}
+                      }`}
                   />
 
                   {/* Schedule Item Card - Matte Monochrome */}
                   <div
-                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 ${
-                      status === 'current'
-                        ? 'bg-zinc-900 dark:bg-zinc-900 border-zinc-700 text-white shadow-xl ring-2 ring-zinc-600'
-                        : status === 'past'
+                    className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 ${status === 'current'
+                      ? 'bg-zinc-900 dark:bg-zinc-900 border-zinc-700 text-white shadow-xl ring-2 ring-zinc-600'
+                      : status === 'past'
                         ? 'bg-zinc-50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800/80 opacity-70'
                         : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-sm'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center justify-between gap-3 mb-2.5">
                       <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
