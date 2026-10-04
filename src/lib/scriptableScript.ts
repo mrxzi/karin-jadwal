@@ -7,7 +7,7 @@ const API_URL = "https://karin-jadwal.vercel.app/api/jadwal/today";
 async function createWidget() {
   const widget = new ListWidget();
   
-  // Dark Matte Aesthetic Gradient (Black to Dark Charcoal)
+  // Background Gradasi Hitam Matte -> Charcoal Gelap Aesthetic
   const gradient = new LinearGradient();
   gradient.colors = [new Color("#1c1c1e"), new Color("#0c0c0e")];
   gradient.locations = [0.0, 1.0];
@@ -31,20 +31,21 @@ async function createWidget() {
     return widget;
   }
 
-  // Header: Minimalist & Clean (e.g. "SENIN" + "4 Pelajaran")
+  // Header: Minimalist & Clean (e.g. "JADWAL KARIN - SENIN" + "4 Pelajaran")
   const headerStack = widget.addStack();
   headerStack.layoutHorizontally();
   headerStack.centerAlignContent();
 
-  const dayText = headerStack.addText((data.day || "HARI INI").toUpperCase());
-  dayText.textColor = new Color("#f4f4f5"); // Pure Clean White
-  dayText.font = Font.boldSystemFont(13);
+  const dayTitle = \`JADWAL KARIN - \${(data.day || "HARI INI").toUpperCase()}\`;
+  const dayText = headerStack.addText(dayTitle);
+  dayText.textColor = new Color("#f4f4f5"); // Putih Bersih
+  dayText.font = Font.boldSystemFont(12);
 
   headerStack.addSpacer();
 
   const countText = headerStack.addText(\`\${data.totalClasses || 0} Pelajaran\`);
   countText.textColor = new Color("#71717a"); // Muted Grey
-  countText.font = Font.mediumSystemFont(11);
+  countText.font = Font.mediumSystemFont(10);
 
   widget.addSpacer(10);
 
@@ -68,7 +69,7 @@ async function createWidget() {
     return widget;
   }
 
-  // Daftar Pelajaran Clean (Tanpa Jam & Tanpa Ruangan)
+  // Daftar Pelajaran Clean (Hanya Nama Mata Pelajaran)
   const maxItems = config.widgetFamily === "small" ? 3 : 4;
   const itemsToShow = data.schedule.slice(0, maxItems);
 
@@ -77,7 +78,7 @@ async function createWidget() {
     itemStack.layoutHorizontally();
     itemStack.centerAlignContent();
 
-    // Indicator Dot (Solid White for Current, Muted Dot for Others)
+    // Indikator Titik Status Minimalis
     const dot = itemStack.addText(item.isCurrent ? "● " : "• ");
     dot.textColor = item.isCurrent ? new Color("#ffffff") : new Color("#52525b");
     dot.font = Font.systemFont(item.isCurrent ? 11 : 10);

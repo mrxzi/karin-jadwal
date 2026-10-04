@@ -256,7 +256,7 @@ export const WidgetGuideView: React.FC<WidgetGuideViewProps> = ({ currentOrigin 
               {/* Widget Header */}
               <div className="flex items-center justify-between border-b border-zinc-800 pb-2.5">
                 <span className="text-xs font-bold text-zinc-100 uppercase tracking-wider">
-                  SENIN
+                  JADWAL KARIN - SENIN
                 </span>
                 <span className="text-[11px] text-zinc-500 font-medium">
                   4 Pelajaran
