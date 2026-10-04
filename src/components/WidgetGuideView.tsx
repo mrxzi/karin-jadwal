@@ -252,59 +252,49 @@ export const WidgetGuideView: React.FC<WidgetGuideViewProps> = ({ currentOrigin 
             </div>
 
             {/* Widget Container Mockup */}
-            <div className="p-4 bg-slate-950 rounded-3xl border border-slate-800 shadow-2xl text-white font-sans space-y-3">
+            <div className="p-5 bg-gradient-to-b from-zinc-900 to-zinc-950 rounded-3xl border border-zinc-800 shadow-2xl text-white font-sans space-y-3">
               {/* Widget Header */}
-              <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                <span className="text-xs font-black text-sky-400 uppercase tracking-wider">
-                  SENIN • JADWAL
+              <div className="flex items-center justify-between border-b border-zinc-800 pb-2.5">
+                <span className="text-xs font-bold text-zinc-100 uppercase tracking-wider">
+                  SENIN
                 </span>
-                <span className="text-[10px] text-slate-400 font-medium">
-                  3 Pelajaran
+                <span className="text-[11px] text-zinc-500 font-medium">
+                  4 Pelajaran
                 </span>
               </div>
 
-              {/* Items Mock */}
-              <div className="space-y-2.5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-1 h-7 rounded-full bg-emerald-500 shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-bold text-white truncate">
-                        Matematika Wajib
-                      </span>
-                      <span className="text-[9px] font-bold text-emerald-400 bg-emerald-500/20 px-1.5 py-0.2 rounded">
-                        SEKARANG
-                      </span>
-                    </div>
-                    <span className="text-[10px] text-slate-400 block truncate">
-                      🕒 07:00 - 08:30 • 📍 Kelas 12 IPA 1
-                    </span>
-                  </div>
+              {/* Items Mock (Clean, No Times, No Rooms) */}
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-white">●</span>
+                  <span className="text-xs font-bold text-white">
+                    Bahasa Inggris
+                  </span>
+                  <span className="text-[10px] italic text-zinc-400">
+                    sekarang
+                  </span>
                 </div>
 
-                <div className="flex items-center gap-2.5">
-                  <div className="w-1 h-7 rounded-full bg-sky-400 shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs font-semibold text-slate-200 block truncate">
-                      Bahasa Indonesia
-                    </span>
-                    <span className="text-[10px] text-slate-400 block truncate">
-                      🕒 08:30 - 10:00 • 📍 Kelas 12 IPA 1
-                    </span>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-zinc-600">•</span>
+                  <span className="text-xs font-medium text-zinc-300">
+                    Sejarah
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-zinc-600">•</span>
+                  <span className="text-xs font-medium text-zinc-300">
+                    Informatika
+                  </span>
                 </div>
 
                 {previewSize === 'medium' && (
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-1 h-7 rounded-full bg-indigo-400 shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <span className="text-xs font-semibold text-slate-200 block truncate">
-                        Fisika (Praktikum)
-                      </span>
-                      <span className="text-[10px] text-slate-400 block truncate">
-                        🕒 10:30 - 12:00 • 📍 Lab Fisika
-                      </span>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-zinc-600">•</span>
+                    <span className="text-xs font-medium text-zinc-300">
+                      Matematika
+                    </span>
                   </div>
                 )}
               </div>
