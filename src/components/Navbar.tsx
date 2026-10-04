@@ -23,37 +23,37 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentDayName,
 }) => {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-zinc-950/85 border-b border-zinc-200 dark:border-zinc-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Branding */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25">
-              <Calendar className="w-5.5 h-5.5" />
+            <div className="w-9 h-9 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 flex items-center justify-center font-bold shadow-md">
+              <Calendar className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-lg font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
-                  JadwalKu
+                <h1 className="text-lg font-black tracking-tight text-zinc-900 dark:text-zinc-50">
+                  Jadwal Karin
                 </h1>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
-                  <Sparkles className="w-2.5 h-2.5" /> Personal
+                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-800">
+                  <Sparkles className="w-2.5 h-2.5 text-zinc-500 dark:text-zinc-400" /> XIIC
                 </span>
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-                Jadwal Pelajaran & Widget iOS
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 hidden sm:block">
+                Monochrome Edition • Widget iOS
               </p>
             </div>
           </div>
 
           {/* Center Navigation Tabs */}
-          <nav className="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/60 text-xs sm:text-sm font-medium">
+          <nav className="flex items-center p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs sm:text-sm font-medium">
             <button
               onClick={() => setActiveTab('today')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
                 activeTab === 'today'
-                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm font-bold border border-zinc-200 dark:border-zinc-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               }`}
             >
               <Clock className="w-4 h-4" />
@@ -64,8 +64,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setActiveTab('weekly')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
                 activeTab === 'weekly'
-                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm font-bold border border-zinc-200 dark:border-zinc-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               }`}
             >
               <LayoutGrid className="w-4 h-4" />
@@ -76,11 +76,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => setActiveTab('widget')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
                 activeTab === 'widget'
-                  ? 'bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 shadow-sm font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white shadow-sm font-bold border border-zinc-200 dark:border-zinc-700'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
               }`}
             >
-              <Smartphone className="w-4 h-4 text-emerald-500" />
+              <Smartphone className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
               <span className="hidden sm:inline">Widget iOS</span>
               <span className="sm:hidden">Widget</span>
             </button>
@@ -89,30 +89,30 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Actions: Time Badge, Theme Toggle, Add Button */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Live Clock Badge */}
-            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300">
+              <span className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-pulse" />
               <span>{currentDayName}</span>
-              <span className="text-slate-300 dark:text-slate-600">|</span>
-              <span className="font-mono font-semibold">{currentTimeStr}</span>
+              <span className="text-zinc-300 dark:text-zinc-700">|</span>
+              <span className="font-mono font-bold">{currentTimeStr}</span>
             </div>
 
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800"
               title={isDarkMode ? 'Mode Terang' : 'Mode Gelap'}
             >
               {isDarkMode ? (
                 <Sun className="w-5 h-5 text-amber-400" />
               ) : (
-                <Moon className="w-5 h-5 text-slate-700" />
+                <Moon className="w-5 h-5 text-zinc-700" />
               )}
             </button>
 
             {/* Add Schedule Button */}
             <button
               onClick={onOpenAddModal}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium text-xs sm:text-sm shadow-md shadow-indigo-500/20 active:scale-95 transition-all duration-150"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-bold text-xs sm:text-sm shadow-md active:scale-95 transition-all duration-150"
             >
               <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Tambah Pelajaran</span>

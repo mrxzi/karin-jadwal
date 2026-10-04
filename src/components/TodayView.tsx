@@ -140,42 +140,42 @@ export const TodayView: React.FC<TodayViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Today Overview Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-900 text-white p-6 sm:p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-zinc-900 via-zinc-950 to-black text-white p-6 sm:p-8 shadow-2xl border border-zinc-800">
         {/* Background Decorative Shapes */}
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white/5 blur-2xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 -mb-16 w-48 h-48 rounded-full bg-purple-500/10 blur-xl pointer-events-none" />
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-zinc-700/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 -mb-16 w-48 h-48 rounded-full bg-zinc-500/10 blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2 text-indigo-200 text-xs sm:text-sm font-medium mb-1">
-              <CalendarDays className="w-4 h-4 text-pink-300" />
+            <div className="flex items-center gap-2 text-zinc-400 text-xs sm:text-sm font-medium mb-1">
+              <CalendarDays className="w-4 h-4 text-zinc-300" />
               <span>{formattedDateStr}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Jadwal Hari {currentDayName}
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+              Jadwal Karin - {currentDayName}
             </h2>
-            <p className="text-sm text-indigo-200 mt-1 max-w-xl">
+            <p className="text-sm text-zinc-400 mt-1 max-w-xl">
               {todaySchedules.length > 0
                 ? `Anda memiliki ${todaySchedules.length} mata pelajaran yang dijadwalkan hari ini.`
                 : 'Tidak ada jadwal pelajaran untuk hari ini. Waktu bersantai! 🎉'}
             </p>
           </div>
 
-          <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-5 py-3.5 rounded-2xl border border-white/10 self-start md:self-auto">
+          <div className="flex items-center gap-4 bg-zinc-900/90 backdrop-blur-md px-5 py-3.5 rounded-2xl border border-zinc-800 self-start md:self-auto shadow-inner">
             <div className="text-center">
               <span className="block text-2xl font-black text-white">
                 {todaySchedules.length}
               </span>
-              <span className="text-[11px] font-medium text-indigo-200 uppercase tracking-wider">
+              <span className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">
                 Total Pelajaran
               </span>
             </div>
-            <div className="w-px h-8 bg-white/20" />
+            <div className="w-px h-8 bg-zinc-800" />
             <div className="text-center">
-              <span className="block text-2xl font-black text-emerald-400">
+              <span className="block text-2xl font-black text-zinc-200">
                 {todaySchedules.filter((i) => getStatus(i) === 'past').length}
               </span>
-              <span className="text-[11px] font-medium text-indigo-200 uppercase tracking-wider">
+              <span className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">
                 Selesai
               </span>
             </div>
