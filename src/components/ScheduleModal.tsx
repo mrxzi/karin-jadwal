@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ScheduleItem, DayOfWeek } from '@/types/schedule';
-import { X, MapPin, User, BookOpen } from 'lucide-react';
+import { X, BookOpen } from 'lucide-react';
 
 interface ScheduleModalProps {
   isOpen: boolean;
@@ -75,8 +75,8 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({
       day,
       startTime,
       endTime,
-      room: room.trim() || 'Kelas XII C',
-      teacher: teacher.trim() || 'Guru Pelajaran',
+      room: '',
+      teacher: '',
       color: 'slate',
       notes: notes.trim(),
     });
@@ -174,40 +174,7 @@ export const ScheduleModal: React.FC<ScheduleModalProps> = ({
             </div>
           </div>
 
-          {/* Ruangan & Guru */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
-                Ruangan / Kelas
-              </label>
-              <div className="relative">
-                <MapPin className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  placeholder="Kelas XII C, Lab Komputer"
-                  value={room}
-                  onChange={(e) => setRoom(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:text-white"
-                />
-              </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-600 dark:text-zinc-400 mb-1.5">
-                Nama Guru
-              </label>
-              <div className="relative">
-                <User className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  placeholder="Guru Pelajaran"
-                  value={teacher}
-                  onChange={(e) => setTeacher(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:text-white"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Notes */}
           <div>

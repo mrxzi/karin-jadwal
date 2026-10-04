@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import { ScheduleItem, DayOfWeek } from '@/types/schedule';
 import {
   Search,
-  MapPin,
-  User,
+  Clock,
   Pencil,
   Trash2,
   Calendar,
@@ -45,9 +44,7 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
     const q = searchQuery.toLowerCase().trim();
     const matchesSearch =
       q === '' ||
-      item.subject.toLowerCase().includes(q) ||
-      item.teacher.toLowerCase().includes(q) ||
-      item.room.toLowerCase().includes(q);
+      item.subject.toLowerCase().includes(q);
 
     return matchesDay && matchesSearch;
   });
@@ -99,7 +96,7 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
           <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Cari pelajaran, guru, ruangan..."
+            placeholder="Cari pelajaran..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:text-white"
@@ -171,19 +168,9 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
                     {item.subject}
                   </h4>
 
-                  <div className="space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-                      <span>
-                        Ruangan: <strong className="text-zinc-800 dark:text-zinc-200">{item.room}</strong>
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <User className="w-3.5 h-3.5 text-zinc-400" />
-                      <span>
-                        Guru: <strong className="text-zinc-800 dark:text-zinc-200">{item.teacher}</strong>
-                      </span>
-                    </div>
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
+                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>{item.startTime} - {item.endTime} WITA</span>
                   </div>
 
                   {item.notes && (
@@ -251,19 +238,9 @@ export const WeeklyView: React.FC<WeeklyViewProps> = ({
                           {item.subject}
                         </h4>
 
-                        <div className="space-y-1 text-xs text-zinc-600 dark:text-zinc-400">
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-                            <span>
-                              Ruangan: <strong className="text-zinc-800 dark:text-zinc-200">{item.room}</strong>
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <User className="w-3.5 h-3.5 text-zinc-400" />
-                            <span>
-                              Guru: <strong className="text-zinc-800 dark:text-zinc-200">{item.teacher}</strong>
-                            </span>
-                          </div>
+                        <div className="flex items-center gap-1.5 text-xs font-mono font-medium text-zinc-500 dark:text-zinc-400">
+                          <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                          <span>{item.startTime} - {item.endTime} WITA</span>
                         </div>
 
                         {item.notes && (

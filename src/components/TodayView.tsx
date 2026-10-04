@@ -4,8 +4,6 @@ import React from 'react';
 import { ScheduleItem } from '@/types/schedule';
 import {
   Clock,
-  MapPin,
-  User,
   Sparkles,
   CheckCircle2,
   AlertCircle,
@@ -140,18 +138,10 @@ export const TodayView: React.FC<TodayViewProps> = ({
             {currentClass.subject}
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm text-zinc-300 mb-4">
+          <div className="flex text-xs sm:text-sm text-zinc-300 mb-4">
             <div className="flex items-center gap-2 bg-zinc-950/80 px-3.5 py-2.5 rounded-xl border border-zinc-800">
               <Clock className="w-4 h-4 text-zinc-400 shrink-0" />
               <span className="font-bold">{currentClass.startTime} - {currentClass.endTime}</span>
-            </div>
-            <div className="flex items-center gap-2 bg-zinc-950/80 px-3.5 py-2.5 rounded-xl border border-zinc-800">
-              <MapPin className="w-4 h-4 text-zinc-400 shrink-0" />
-              <span>{currentClass.room}</span>
-            </div>
-            <div className="flex items-center gap-2 bg-zinc-950/80 px-3.5 py-2.5 rounded-xl border border-zinc-800">
-              <User className="w-4 h-4 text-zinc-400 shrink-0" />
-              <span className="truncate">{currentClass.teacher}</span>
             </div>
           </div>
 
@@ -184,7 +174,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
                 {nextClass.subject}
               </h4>
               <p className="text-xs text-zinc-400">
-                {nextClass.room} • {nextClass.teacher}
+                {nextClass.startTime} - {nextClass.endTime} WITA
               </p>
             </div>
           </div>
@@ -252,6 +242,11 @@ export const TodayView: React.FC<TodayViewProps> = ({
                   >
                     <div className="flex items-center justify-between gap-3 mb-2.5">
                       <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300">
+                          <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                          {item.startTime} - {item.endTime}
+                        </span>
+
                         {status === 'current' && (
                           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white uppercase tracking-wider">
                             <span className="w-2 h-2 rounded-full bg-white animate-ping" />
@@ -290,16 +285,7 @@ export const TodayView: React.FC<TodayViewProps> = ({
                       {item.subject}
                     </h4>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                        <span>Ruangan: <strong className="text-zinc-800 dark:text-zinc-200">{item.room}</strong></span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <User className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                        <span className="truncate">Guru: <strong className="text-zinc-800 dark:text-zinc-200">{item.teacher}</strong></span>
-                      </div>
-                    </div>
+
 
                     {item.notes && (
                       <div className="mt-3 pt-2.5 border-t border-zinc-200 dark:border-zinc-800 flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400 italic">
