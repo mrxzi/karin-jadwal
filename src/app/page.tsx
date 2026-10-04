@@ -201,7 +201,7 @@ export default function HomePage() {
   const todaySchedules = schedules.filter((s) => s.day === currentDayName);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-200">
       {/* Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -214,11 +214,11 @@ export default function HomePage() {
       />
 
       {/* Main Content Body */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-24 space-y-4">
-            <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm font-medium text-slate-500">Memuat Jadwal Pelajaran...</p>
+            <div className="w-10 h-10 border-4 border-zinc-900 dark:border-zinc-100 border-t-transparent rounded-full animate-spin" />
+            <p className="text-sm font-bold text-zinc-500">Memuat Jadwal Pelajaran...</p>
           </div>
         ) : (
           <>
@@ -251,13 +251,13 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 mt-16 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+      <footer className="border-t border-zinc-200 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-950/80 mt-16 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p>© 2026 JadwalKu • Website Jadwal Pelajaran Personal & Widget iOS</p>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span>JSON API: <code className="text-indigo-600 dark:text-indigo-400">/api/jadwal/today</code></span>
+          <p>© 2026 Jadwal Karin (XIIC) • Monochrome Edition & Widget iOS</p>
+          <div className="flex items-center gap-4 text-zinc-400">
+            <span>JSON API: <code className="text-zinc-900 dark:text-zinc-100 font-bold">/api/jadwal/today</code></span>
             <span>•</span>
-            <span>Scriptable iOS Supported</span>
+            <span>Scriptable iOS Ready</span>
           </div>
         </div>
       </footer>
