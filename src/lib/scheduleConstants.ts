@@ -224,7 +224,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
   {
     id: 'tryout-sen-1',
     subject: 'Bahasa Indonesia',
-    room: 'Kelas XII C',
+    room: '',
     teacher: 'Ruang 6',
     startTime: '07:30',
     endTime: '09:30',
@@ -235,7 +235,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
   {
     id: 'tryout-sel-1',
     subject: 'Bahasa Inggris',
-    room: 'Kelas XII C',
+    room: '',
     teacher: 'Ruang 6',
     startTime: '07:30',
     endTime: '09:30',
@@ -246,7 +246,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
   {
     id: 'tryout-rab-1',
     subject: 'Matematika',
-    room: 'Kelas XII C',
+    room: '',
     teacher: 'Ruang 6',
     startTime: '07:30',
     endTime: '09:30',
@@ -257,7 +257,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
   {
     id: 'tryout-kam-1',
     subject: 'Biologi',
-    room: 'Kelas XII C',
+    room: '',
     teacher: 'Ruang 6',
     startTime: '07:30',
     endTime: '09:30',
@@ -268,7 +268,7 @@ export const INITIAL_SCHEDULES: ScheduleItem[] = [
   {
     id: 'tryout-jum-1',
     subject: 'Matematika Lanjut / Kimia',
-    room: 'Kelas XII C',
+    room: '',
     teacher: 'Ruang 6',
     startTime: '07:30',
     endTime: '09:30',
