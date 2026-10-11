@@ -54,7 +54,15 @@ export async function GET(request: NextRequest) {
     const nowTimeStr = getWITATimeStr(witaDate);
 
     // Get today's schedules sorted by start time
-    const todayList = getAllSchedules(targetDay);
+    const allTodayList = getAllSchedules(targetDay);
+
+    // Tryout week: 12–16 Oktober 2026 → only show tryout items
+    const TRYOUT_START = '2026-10-12';
+    const TRYOUT_END   = '2026-10-16';
+    const isTryoutWeek = isoDate >= TRYOUT_START && isoDate <= TRYOUT_END;
+    const todayList = isTryoutWeek
+      ? allTodayList.filter((item) => item.id.startsWith('tryout-'))
+      : allTodayList;
 
     let currentClass: ClassInfo | null = null;
     let nextClass: ClassInfo | null = null;
